@@ -147,4 +147,8 @@ CELERY_BEAT_SCHEDULE = {
         "task": "core.tasks.sample_task",  # Выборы задачи
         "schedule": crontab(minute="*/1"),  # Запуск раз в минуту
     },
+    "send_email_report": {
+        "task": "core.tasks.send_email_report",
+        "schedule": crontab(hour="*/1"),  # Запуск раз в час
+    },
 }

@@ -29,8 +29,9 @@ class Command(BaseCommand):
                 f"Order Report for {today_start.strftime('%Y-%m-%d')} "
                 f"to {today_end.strftime('%Y-%m-%d')}"
             )
+            # Отправка админам из списка ADMINS
             mail_admins(subject=subject, message=message, html_message=None)
 
-            self.stdout.write("E-mail Report was sent.")
+            self.stdout.write("E-mail Report was sent.")  # Сообщение в консоль
         else:
             self.stdout.write("No orders confirmed today.")
