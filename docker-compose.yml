@@ -19,7 +19,7 @@ services:
 
   celery:
     build: ./project
-    command: celery --app=core worker --loglevel=info  --logfile=logs/celery.log
+    command: celery --app=core worker --loglevel=info  # --logfile=logs/celery.log  # Отчет в журнал
     volumes:
       - ./project:/usr/src/app
     environment:

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 import os
 from pathlib import Path
+from celery.schedules import crontab
+import core.tasks
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -133,3 +135,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # CELERY settings
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
 CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+# Расписание задач CELERY
+CELERY_BEAT_SCHEDULE = {
+    "sample_task": {  # Название задачи
+        "task": "core.tasks.sample_task",  # Выборы задачи
+        "schedule": crontab(minute="*/1"),  # Запуск раз в минуту
+    },
+}
